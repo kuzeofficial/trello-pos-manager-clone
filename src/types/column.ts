@@ -1,5 +1,5 @@
 import type { Card } from './card';
-export interface Column {
+export type Column<T = {}> = {
     id: string;
-    cards: Card[];
+    cards: Card<T>[];
 }

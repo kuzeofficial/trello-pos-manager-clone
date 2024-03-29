@@ -1,18 +1,18 @@
-import type { Card } from './types/card';
+import type { Card as CardType } from './types/card';
 import type { Column } from './types/column';
 
+export class TrelloManager<T = {}> {
+    private columnsMap: Map<string, Column<CardType<T>>>;
 
-export class TrelloManager {
-    private columnsMap: Map<string, Column>;
-
-    constructor(columns: Column[]) {
+    constructor(columns: Column<CardType<T>>[]) {
         this.columnsMap = new Map(columns.map(column => [column.id, column]));
     }
+
     get() {
         return this.columnsMap;
     }
 
-    addCard(columnId: string, newCard: Card) {
+    addCard(columnId: string, newCard: CardType<T>) {
         const column = this.columnsMap.get(columnId);
         if (column) {
             const lastCard = column.cards[column.cards.length - 1];
@@ -41,7 +41,7 @@ export class TrelloManager {
         console.error('Source or target column not found');
     }
 
-    private calculatePositionForMovedCard(cards: Card[], movedCardIndex: number): number {
+    private calculatePositionForMovedCard(cards: CardType<T>[], movedCardIndex: number): number {
         if (cards.length === 0) {
             return 16384;
         }
@@ -54,7 +54,7 @@ export class TrelloManager {
         return (cards[movedCardIndex - 1].pos + cards[movedCardIndex].pos) / 2;
     }
 
-    private reorderCards(cards: Card[]) {
+    private reorderCards(cards: CardType<T>[]) {
         cards.sort((a, b) => a.pos - b.pos);
         for (let i = 0; i < cards.length - 1; i++) {
             if (Math.abs(cards[i].pos - cards[i + 1].pos) < 0.0001) {
