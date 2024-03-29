@@ -1,5 +1,5 @@
 {
-  "name": "ordering-trello",
+  "name": "@kuze/ordering-trello",
   "module": "./src/index.ts",
   "type": "module",
   "scripts": {
@@ -11,5 +11,26 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
-  }
+  },
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "directories": {
+    "test": "tests",
+    "src": "src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuzeofficial/trello-pos-manager-clone.git#main"
+  },
+  "keywords": [
+    "trello",
+    "trello-logic-pos",
+    "trello-clone"
+  ],
+  "author": "cfonsecacomas@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kuzeofficial/trello-pos-manager-clone/issues"
+  },
+  "homepage": "https://github.com/kuzeofficial/trello-pos-manager-clone/tree/main#readme"
 }
